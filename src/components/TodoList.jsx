@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   HStack,
   VStack,
@@ -7,13 +7,14 @@ import {
   StackDivider,
   Spacer,
   Badge,
-} from '@chakra-ui/react';
-import { FaTrash } from 'react-icons/fa';
+  Checkbox,
+} from "@chakra-ui/react";
+import { FaTrash } from "react-icons/fa";
 
-function TodoList({ todos, deleteTodo }) {
+function TodoList({ todos, deleteTodo, toggleTodo }) {
   if (!todos.length) {
     return (
-      <Badge colorScheme='green' p='4' m='4' borderRadius='lg'>
+      <Badge colorScheme="green" p="4" m="4" borderRadius="lg">
         No Todos, yay!!!
       </Badge>
     );
@@ -22,13 +23,13 @@ function TodoList({ todos, deleteTodo }) {
   return (
     <VStack
       divider={<StackDivider />}
-      borderColor='gray.100'
-      borderWidth='2px'
-      p='4'
-      borderRadius='lg'
-      w='100%'
-      maxW={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}
-      alignItems='stretch'
+      borderColor="gray.100"
+      borderWidth="2px"
+      p="4"
+      borderRadius="lg"
+      w="100%"
+      maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "40vw" }}
+      alignItems="stretch"
     >
       {todos.map((todo) => (
         <HStack key={todo.id}>
@@ -36,8 +37,12 @@ function TodoList({ todos, deleteTodo }) {
           <Spacer />
           <IconButton
             icon={<FaTrash />}
-            isRound='true'
+            isRound="true"
             onClick={() => deleteTodo(todo.id)}
+          />
+          <Checkbox
+            isChecked={todo.completed}
+            onChange={() => toggleTodo(todo.id)}
           />
         </HStack>
       ))}

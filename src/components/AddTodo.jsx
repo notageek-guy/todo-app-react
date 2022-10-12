@@ -20,6 +20,7 @@ function AddTodo({ addTodo }) {
     const todo = {
       id: nanoid(),
       body: content,
+isCompleted: false,
     };
 
     addTodo(todo);
@@ -37,7 +38,7 @@ function AddTodo({ addTodo }) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        <Button bg='pink.500' px='8' type='submit'>
+        <Button bg='blue.500' color='white' px='8' type='submit'>
           ADD TODO
         </Button>
       </HStack>
